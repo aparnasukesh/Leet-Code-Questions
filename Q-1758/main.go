@@ -2,25 +2,40 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
 
-	str := "0101"
+	str := "0010"
 	fmt.Println(minOperations(str))
 
 }
 func minOperations(s string) int {
-
-	var num int64
-	var err error
-	num, err = strconv.ParseInt(s, 2, 64)
-	if err != nil {
-		fmt.Println(err)
+	byt := []byte(s)
+	temp := byt[0]
+	count := 0
+	fmt.Println(byt)
+	for i := 1; i < len(byt); i++ {
+		if temp == 48 {
+			if i%2 != 0 && byt[i] != 49 {
+				byt[i] = 49
+				count++
+			}
+			if i%2 == 0 && byt[i] != 48 {
+				byt[i] = 48
+				count++
+			}
+		}
+		if temp == 49 {
+			if i%2 != 0 && byt[i] != 48 {
+				byt[i] = 48
+				count++
+			}
+			if i%2 == 0 && byt[i] != 49 {
+				byt[i] = 49
+				count++
+			}
+		}
 	}
-
-	for i := 0; i < len(num); i++ {
-
-	}
+	return count
 }
