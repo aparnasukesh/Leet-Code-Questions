@@ -15,6 +15,7 @@ func numberGame(nums []int) []int {
 	sort.Slice(nums, func(i, j int) bool {
 		return nums[i] < nums[j]
 	})
+	//sort.Ints(nums)
 	for i := 0; i < len(nums); i++ {
 		if i%2 == 0 {
 			game[i+1] = nums[i]
