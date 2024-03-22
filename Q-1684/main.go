@@ -5,28 +5,27 @@ import (
 )
 
 func main() {
-	// allowed := "ab"
-	// words := []string{"ad", "bd", "aaab", "baa", "badab"}
-	// //Output:2
-	allowed := "abc"
-	words := []string{"a", "b", "c", "ab", "ac", "bc", "abc"}
+	allowed := "ab"
+	words := []string{"ad", "bd", "aaab", "baa", "badab"}
+	//Output: 2
 	fmt.Println(countConsistentStrings(allowed, words))
 }
+
 func countConsistentStrings(allowed string, words []string) int {
 	count := 0
-	var flag int
-	for i := 0; i < len(words); i++ {
-		for _, ch := range words[i] {
-			flag = 0
-			for _, val := range allowed {
-				if ch == val {
-					flag = 1
-				} else {
-					flag = 0
-				}
+	allowedMap := make(map[byte]bool)
+	for i := range allowed {
+		allowedMap[allowed[i]] = true
+	}
+	for _, word := range words {
+		consistent := true
+		for j := range word {
+			if !allowedMap[word[j]] {
+				consistent = false
+				break
 			}
 		}
-		if flag == 1 {
+		if consistent {
 			count++
 		}
 	}
