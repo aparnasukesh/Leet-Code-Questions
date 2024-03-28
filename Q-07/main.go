@@ -13,6 +13,9 @@ func reverse(x int) int {
 	const MaxInt32 = 1<<31 - 1
 	const MinInt32 = -1 << 31
 	sum := 0
+	fmt.Println(MaxInt32, MinInt32)
+	fmt.Printf("%b\n %b:", MaxInt32, MinInt32)
+	fmt.Println()
 	for x != 0 {
 		rem := x % 10
 		if sum > MaxInt32/10 || (sum == MaxInt32/10 && rem > 7) {
